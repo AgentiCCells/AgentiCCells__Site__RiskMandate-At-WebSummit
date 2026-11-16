@@ -8,9 +8,10 @@
 <meta name="theme-color" content="#071114">
 <meta property="og:title" content="RiskMandate at Web Summit Lisbon 2026">
 <meta property="og:description" content="Know the reach. Define the mandate. Close the gap. The film, the live views from the stand and photos from the week.">
-<meta property="og:image" content="https://riskmandate-at-websummit.agenticcells.site/media/hero-poster.jpg">
+<meta property="og:image" content="https://riskmandate-at-websummit.agenticcells.site/og.jpg">
 <meta property="og:type" content="website">
-<link rel="preload" as="image" href="media/hero-poster.jpg">
+<link rel="modulepreload" href="vault.js">
+<link rel="preconnect" href="https://send.sgraph.ai" crossorigin>
 <style>
 :root{
   --bg:#071114;--bg2:#0b1a1e;--panel:#0f2227;--line:#1d363c;--fg:#eef4f2;--muted:#9db3b0;
@@ -130,6 +131,33 @@ main>section.wrap{margin-top:clamp(4.5rem,11vw,8rem)}
 footer{margin-top:clamp(4rem,10vw,7rem);border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.88rem}
 footer p{margin:.25rem 0}
 
+/* vault media */
+.card button{background:linear-gradient(110deg,#0d1f24 30%,#16313a 50%,#0d1f24 70%) 0 0/300% 100%;animation:shimmer 1.6s linear infinite}
+.card button.loaded{animation:none;background:#000}
+@keyframes shimmer{to{background-position:-150% 0}}
+.card img{opacity:0;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.card img.ready{opacity:1}
+.hero .poster{transition:filter .6s,transform .6s}
+.hero .poster.ph{filter:blur(18px) brightness(.8);transform:scale(1.06)}
+.hero video{opacity:0;transition:opacity 1.2s ease}
+.hero video.on{opacity:1}
+.film,.vwrap{position:relative}
+.vwrap video{width:100%;aspect-ratio:16/9;border-radius:10px;background:#000;object-fit:cover}
+.film video{object-fit:cover}
+.playover{position:absolute;inset:0;border:0;padding:0;cursor:pointer;display:grid;place-content:center;justify-items:center;gap:.9rem;background:radial-gradient(circle,rgba(0,0,0,.15),rgba(0,0,0,.45));color:#fff;font:600 1rem/1 var(--display);border-radius:inherit}
+.playover .disc{width:5.5rem;height:5.5rem;border-radius:50%;display:grid;place-items:center;background:var(--amber);color:#1a1205;box-shadow:0 0 0 10px rgba(242,169,59,.18),0 20px 50px rgba(0,0,0,.5);transition:transform .2s}
+.playover:hover .disc{transform:scale(1.06)}
+.playover .disc svg{width:2.2rem;height:2.2rem;margin-left:.3rem}
+.playover.small .disc{width:4rem;height:4rem}.playover.small .disc svg{width:1.6rem;height:1.6rem}
+.playover .pl{background:rgba(0,0,0,.55);padding:.45rem .8rem;border-radius:999px;font-size:.85rem;letter-spacing:.04em}
+.playover.busy .pl::after{content:" · decrypting " attr(data-pct)}
+.playover[hidden]{display:none}
+.vstatus{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;margin-top:1.2rem;font:500 .8rem/1.5 var(--mono);color:var(--muted)}
+.vstatus .dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.vstatus.ok .dot{background:var(--mandate);box-shadow:0 0 10px var(--mandate)}
+.vstatus.err .dot{background:var(--gap);box-shadow:0 0 10px var(--gap)}
+.err-note{padding:1rem;color:var(--muted);font-size:.9rem}
+
 /* lightbox */
 dialog{border:0;padding:0;background:transparent;max-width:min(96vw,1700px);max-height:94vh;color:var(--fg)}
 dialog::backdrop{background:rgba(3,8,10,.92);backdrop-filter:blur(4px)}
@@ -156,11 +184,8 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
 </nav>
 
 <header class="hero" id="top">
-  <img class="poster" src="media/hero-poster.jpg" alt="">
-  <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg" aria-hidden="true">
-    <source src="media/hero-loop-1080.mp4" type="video/mp4" media="(min-width: 900px)">
-    <source src="media/hero-loop-720.mp4" type="video/mp4">
-  </video>
+  <img class="poster" id="heroPoster" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/posters/hero-poster.webp" alt="">
+  <video id="heroVideo" muted loop playsinline aria-hidden="true"></video>
   <div class="wrap hero-inner">
     <p class="kicker">RiskMandate at Web Summit Lisbon 2026</p>
     <h1>Know the <span>reach.</span></h1>
@@ -184,10 +209,8 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
     <p class="sub">RiskMandate's short film, made for Web Summit. Turn the sound on: it is a song, with subtitles.</p>
   </div>
   <div class="film reveal">
-    <video id="film-player" controls playsinline preload="metadata" poster="media/film-poster.jpg">
-      <source src="media/know-the-reach-1080.mp4" type="video/mp4" media="(min-width: 900px)">
-      <source src="media/know-the-reach-720.mp4" type="video/mp4">
-    </video>
+    <video id="film-player" playsinline data-video="film" data-poster="web/posters/film-poster.webp"></video>
+    <button class="playover" data-for="film-player" aria-label="Play the film with sound"><span class="disc"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></span><span class="pl">Play · 3:39</span></button>
   </div>
   <div class="lines reveal">
     <blockquote>"We put our own agent on the table, and we measured it to death."<cite>From the film</cite></blockquote>
@@ -225,27 +248,27 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
   </div>
   <div class="viz">
     <figure class="card big reveal">
-      <button data-full="img/viz/hexagon-1600.webp" data-cap="Team view: each person sits on the edge of the hexagon with their agents around them; the lines are the links between agents."><img src="img/viz/hexagon-800.webp" srcset="img/viz/hexagon-800.webp 800w, img/viz/hexagon-1600.webp 1600w" sizes="(min-width:900px) 58vw, 100vw" alt="A glowing hexagon on a dark blue screen. Five clusters of coloured dots, each around a named circle, are joined by hundreds of fine lines." loading="lazy"></button>
+      <button data-full="web/viz/hexagon-1600.webp" data-cap="Team view: each person sits on the edge of the hexagon with their agents around them; the lines are the links between agents."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/viz/hexagon-800.webp" alt="A glowing hexagon on a dark blue screen. Five clusters of coloured dots, each around a named circle, are joined by hundreds of fine lines." loading="lazy"></button>
       <figcaption><span class="tag">Team</span><b>Everyone, and every agent</b>Each person on the edge of the hexagon, their agents around them, and the links between agents.</figcaption>
     </figure>
     <figure class="card side reveal">
-      <button data-full="img/viz/agents-1600.webp" data-cap="One person's agents: how many there are, how many have a policy, and which ones talk to each other."><img src="img/viz/agents-800.webp" srcset="img/viz/agents-800.webp 800w, img/viz/agents-1600.webp 1600w" sizes="(min-width:900px) 40vw, 100vw" alt="A glowing orb on the left branches through four summary boxes into a fan of named agents on the right, with a side panel of counts." loading="lazy"></button>
+      <button data-full="web/viz/agents-1600.webp" data-cap="One person's agents: how many there are, how many have a policy, and which ones talk to each other."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/viz/agents-800.webp" alt="A glowing orb on the left branches through four summary boxes into a fan of named agents on the right, with a side panel of counts." loading="lazy"></button>
       <figcaption><span class="tag">Agents</span><b>One person's agents</b>How many there are, how many have a policy, and which ones talk to each other.</figcaption>
     </figure>
     <figure class="card half reveal">
-      <button data-full="img/viz/deliverables-1600.webp" data-cap="Deliverables: agents inside the circle, joined to the systems they reach, such as mail, keys, the site, infrastructure and the CRM."><img src="img/viz/deliverables-800.webp" srcset="img/viz/deliverables-800.webp 800w, img/viz/deliverables-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A circle full of agent nodes, with lines running out to a column of icons labelled mail, research, draft, keys, site, infrastructure, app, CRM and LinkedIn." loading="lazy"></button>
+      <button data-full="web/viz/deliverables-1600.webp" data-cap="Deliverables: agents inside the circle, joined to the systems they reach, such as mail, keys, the site, infrastructure and the CRM."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/viz/deliverables-800.webp" alt="A circle full of agent nodes, with lines running out to a column of icons labelled mail, research, draft, keys, site, infrastructure, app, CRM and LinkedIn." loading="lazy"></button>
       <figcaption><span class="tag">Reach</span><b>What the agents can touch</b>Agents joined to the systems they reach: mail, keys, the site, infrastructure, the CRM.</figcaption>
     </figure>
     <figure class="card half reveal">
-      <button data-full="img/viz/universe-1600.webp" data-cap="Universe: the team drawn as planets and moons, with agents that have no policy flagged in red."><img src="img/viz/universe-800.webp" srcset="img/viz/universe-800.webp 800w, img/viz/universe-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A dark starfield with a bright sun at the centre and planets on orbits, some carrying small red labels." loading="lazy"></button>
+      <button data-full="web/viz/universe-1600.webp" data-cap="Universe: the team drawn as planets and moons, with agents that have no policy flagged in red."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/viz/universe-800.webp" alt="A dark starfield with a bright sun at the centre and planets on orbits, some carrying small red labels." loading="lazy"></button>
       <figcaption><span class="tag">Universe</span><b>The whole system as a sky</b>The team as planets and moons, with agents that have no policy flagged in red.</figcaption>
     </figure>
     <figure class="card half reveal">
-      <button data-full="img/photos/dashboard-1600.webp" data-cap="The stand's large screen: a flow of agents and policies on the left, the team hexagon on the right."><img src="img/photos/dashboard-800.webp" srcset="img/photos/dashboard-800.webp 800w, img/photos/dashboard-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A large screen showing a flow diagram of coloured boxes on the left and the glowing team hexagon on the right." loading="lazy"></button>
+      <button data-full="web/photos/dashboard-1600.webp" data-cap="The stand's large screen: a flow of agents and policies on the left, the team hexagon on the right."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/dashboard-800.webp" alt="A large screen showing a flow diagram of coloured boxes on the left and the glowing team hexagon on the right." loading="lazy"></button>
       <figcaption><span class="tag">Flow</span><b>Policies, side by side</b>A flow of agents and policies next to the team hexagon, on the stand's large screen.</figcaption>
     </figure>
     <figure class="card half reveal">
-      <button data-full="img/photos/universe-screen-1600.webp" data-cap="The universe view, close up: a sun at the centre, planets on their orbits, labels on each."><img src="img/photos/universe-screen-800.webp" srcset="img/photos/universe-screen-800.webp 800w, img/photos/universe-screen-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A close photo of a screen: a golden sun at the centre with planets on elliptical orbits and small labels." loading="lazy"></button>
+      <button data-full="web/photos/universe-screen-1600.webp" data-cap="The universe view, close up: a sun at the centre, planets on their orbits, labels on each."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/universe-screen-800.webp" alt="A close photo of a screen: a golden sun at the centre with planets on elliptical orbits and small labels." loading="lazy"></button>
       <figcaption><span class="tag">Universe</span><b>Close up</b>The universe view photographed on the screen at the stand.</figcaption>
     </figure>
   </div>
@@ -258,9 +281,8 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
     <p class="sub">The team, the stand, the hoodies and the last box into the car.</p>
   </div>
   <div class="stand-clip reveal">
-    <video controls playsinline preload="none" poster="media/stand-poster.jpg">
-      <source src="media/at-the-stand-720.mp4" type="video/mp4">
-    </video>
+    <div class="vwrap"><video id="stand-player" playsinline data-video="stand" data-poster="web/posters/stand-poster.webp"></video>
+    <button class="playover small" data-for="stand-player" aria-label="Play the clip from the stand"><span class="disc"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></span><span class="pl">Play · 0:37</span></button></div>
     <div>
       <p class="kicker">37 seconds</p>
       <h3>At the stand</h3>
@@ -268,14 +290,14 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
     </div>
   </div>
   <div class="gallery">
-    <figure class="card reveal tall"><button data-full="img/photos/stand-1600.webp" data-cap="The team at the RiskMandate stand."><img src="img/photos/stand-800.webp" width="800" height="1067" alt="Six people in RiskMandate t-shirts and hoodies smiling at the stand, in front of its sign." loading="lazy"></button></figure>
-    <figure class="card reveal"><button data-full="img/photos/team-back-1600.webp" data-cap="Agents under policy: the hoodies from behind."><img src="img/photos/team-back-800.webp" width="800" height="600" alt="Five people seen from behind, arms around each other, in orange, black, green, red and pink hoodies printed with 'Agents under policy' and RiskMandate." loading="lazy"></button></figure>
-    <figure class="card reveal"><button data-full="img/photos/arena-1600.webp" data-cap="Inside the arena."><img src="img/photos/arena-800.webp" width="800" height="600" alt="Six people posing together inside a large arena, with stage lights and seating behind them." loading="lazy"></button></figure>
-    <figure class="card reveal tall"><button data-full="img/photos/stand-cheer-1600.webp" data-cap="Cheering at the stand."><img src="img/photos/stand-cheer-800.webp" width="800" height="1067" alt="The team at the stand, arms raised, under the exhibition hall roof." loading="lazy"></button></figure>
-    <figure class="card reveal"><button data-full="img/photos/selfie-1600.webp" data-cap="Outside the arena."><img src="img/photos/selfie-800.webp" width="800" height="600" alt="A selfie of three smiling people outside the arena, one in a 'Ask me how I control my agents' t-shirt." loading="lazy"></button></figure>
-    <figure class="card reveal tall"><button data-full="img/photos/team-hall-1600.webp" data-cap="Five hoodies, five colours."><img src="img/photos/team-hall-800.webp" width="800" height="1067" alt="Five people standing in a row in a corridor, in orange, black, green, red and pink hoodies." loading="lazy"></button></figure>
-    <figure class="card reveal"><button data-full="img/photos/team-back-2-1600.webp" data-cap="The back of the hoodies, with the QR code."><img src="img/photos/team-back-2-800.webp" width="800" height="600" alt="The same five hoodies from behind, showing the printed QR codes." loading="lazy"></button></figure>
-    <figure class="card reveal wide"><button data-full="img/photos/packing-up-1600.webp" data-cap="Packing up: the stand sign goes into the car."><img src="img/photos/packing-up-800.webp" width="800" height="450" alt="A smiling person in a yellow hoodie loads the RiskMandate stand sign into the boot of a car at night." loading="lazy"></button></figure>
+    <figure class="card reveal tall"><button data-full="web/photos/stand-1600.webp" data-cap="The team at the RiskMandate stand."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/stand-800.webp" width="800" height="1067" alt="Six people in RiskMandate t-shirts and hoodies smiling at the stand, in front of its sign." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="web/photos/team-back-1600.webp" data-cap="Agents under policy: the hoodies from behind."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/team-back-800.webp" width="800" height="600" alt="Five people seen from behind, arms around each other, in orange, black, green, red and pink hoodies printed with 'Agents under policy' and RiskMandate." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="web/photos/arena-1600.webp" data-cap="Inside the arena."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/arena-800.webp" width="800" height="600" alt="Six people posing together inside a large arena, with stage lights and seating behind them." loading="lazy"></button></figure>
+    <figure class="card reveal tall"><button data-full="web/photos/stand-cheer-1600.webp" data-cap="Cheering at the stand."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/stand-cheer-800.webp" width="800" height="1067" alt="The team at the stand, arms raised, under the exhibition hall roof." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="web/photos/selfie-1600.webp" data-cap="Outside the arena."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/selfie-800.webp" width="800" height="600" alt="A selfie of three smiling people outside the arena, one in a 'Ask me how I control my agents' t-shirt." loading="lazy"></button></figure>
+    <figure class="card reveal tall"><button data-full="web/photos/team-hall-1600.webp" data-cap="Five hoodies, five colours."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/team-hall-800.webp" width="800" height="1067" alt="Five people standing in a row in a corridor, in orange, black, green, red and pink hoodies." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="web/photos/team-back-2-1600.webp" data-cap="The back of the hoodies, with the QR code."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/team-back-2-800.webp" width="800" height="600" alt="The same five hoodies from behind, showing the printed QR codes." loading="lazy"></button></figure>
+    <figure class="card reveal wide"><button data-full="web/photos/packing-up-1600.webp" data-cap="Packing up: the stand sign goes into the car."><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-vault="web/photos/packing-up-800.webp" width="800" height="450" alt="A smiling person in a yellow hoodie loads the RiskMandate stand sign into the boot of a car at night." loading="lazy"></button></figure>
   </div>
 </section>
 
@@ -294,14 +316,15 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
   <div class="reveal">
     <p class="kicker">Original files</p>
     <h2>Take the originals.</h2>
-    <p class="sub">The full-quality videos and photos behind this page sit in an encrypted sgit vault. This read-only key opens it.</p>
+    <p class="sub">Every video and photo on this page is read from an encrypted sgit vault and decrypted here, in your browser. The server only ever holds ciphertext. The same read-only key opens the full-quality originals.</p>
   </div>
   <div class="vault reveal" id="vault">
     <span class="label">Read-only vault key</span>
     <div class="code"><code id="vk">Loading…</code><button class="copy" data-copy="vk">Copy</button></div>
     <span class="label">Clone it</span>
     <div class="code"><code id="vc">pip install sgit-ai</code><button class="copy" data-copy="vc">Copy</button></div>
-    <noscript><p>The key is in <a href="vault.json">vault.json</a>.</p></noscript>
+    <noscript><p>The key is in <a href="vault.json">vault.json</a>. The photos and videos need JavaScript: they are decrypted in the page.</p></noscript>
+    <div class="vstatus" id="vstatus"><span class="dot"></span><span id="vstatus-text">Opening the vault…</span></div>
   </div>
 </section>
 </main>
@@ -315,48 +338,108 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
 
 <dialog id="lb"><button class="x" aria-label="Close">×</button><img alt=""><p></p></dialog>
 
-<script>
-(() => {
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+<script type="module">
+import { VaultReader, parseReadKey, playSegmented } from './vault.js';
 
-  // Hero: respect reduced motion; pause the loop when off screen.
-  const hero = document.getElementById('heroVideo');
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { hero.removeAttribute('autoplay'); hero.pause(); }
-  else new IntersectionObserver(([e]) => e.isIntersecting ? hero.play().catch(() => {}) : hero.pause()).observe(hero);
+const $ = (q, el = document) => el.querySelector(q), $$ = (q, el = document) => [...el.querySelectorAll(q)];
+const nav = $('#nav');
+const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  // "Watch the film" scrolls to the player and starts it with sound.
-  const film = document.getElementById('film-player');
-  document.querySelectorAll('[data-play]').forEach(a => a.addEventListener('click', ev => {
-    ev.preventDefault();
-    document.getElementById('film').scrollIntoView({ behavior: 'smooth' });
-    film.muted = false; film.play().catch(() => {});
-  }));
+// Reveal on scroll.
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+$$('.reveal').forEach(el => io.observe(el));
 
-  // Reveal on scroll.
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+const status = (text, cls) => { $('#vstatus-text').textContent = text; if (cls) $('#vstatus').className = 'vstatus ' + cls; };
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const big = Math.max(screen.width, screen.height) * devicePixelRatio >= 1600 && innerWidth >= 900 && !(navigator.connection && navigator.connection.saveData);
 
-  // Lightbox.
-  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
-  document.querySelectorAll('[data-full]').forEach(b => b.addEventListener('click', () => {
-    lbImg.src = b.dataset.full; lbImg.alt = b.querySelector('img').alt; lbCap.textContent = b.dataset.cap || '';
-    lb.showModal();
-  }));
-  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('x')) lb.close(); });
-
-  // Vault key (published on purpose; read-only).
-  fetch('vault.json').then(r => r.json()).then(v => {
-    document.getElementById('vk').textContent = v.read_key;
-    document.getElementById('vc').textContent = v.install + ' && ' + v.clone;
-  }).catch(() => { document.getElementById('vk').innerHTML = 'See <a href="vault.json">vault.json</a>'; });
-  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
-    navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent).then(() => {
-      b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1500);
-    });
-  }));
+let vault, manifest;
+const ready = (async () => {
+  const meta = await (await fetch('vault.json')).json();
+  $('#vk').textContent = meta.read_key;
+  $('#vc').textContent = meta.install + ' && ' + meta.clone;
+  const { readKeyHex, vaultId } = parseReadKey(meta.read_key);
+  vault = await new VaultReader(readKeyHex, vaultId).open();
+  manifest = JSON.parse(await vault.text('web/manifest.json'));
+  status(`Decrypted in your browser from sgit vault ${vaultId}, commit ${vault.commitId.replace('obj-cas-imm-', '')}`, 'ok');
 })();
+ready.catch(e => { status('Could not open the vault: ' + e.message, 'err'); console.error(e); });
+
+const types = { webp: 'image/webp', jpg: 'image/jpeg', png: 'image/png' };
+const imageURL = async (path) => { await ready; return vault.objectURL(path, types[path.split('.').pop()]); };
+
+// Images: decrypt when near the viewport.
+const loadImg = async (img) => {
+  try {
+    img.src = await imageURL(img.dataset.vault);
+    await img.decode().catch(() => {});
+    img.classList.add('ready'); img.classList.remove('ph'); img.closest('button')?.classList.add('loaded');
+  } catch (e) { img.closest('button')?.insertAdjacentHTML('beforeend', '<p class="err-note">Could not load this image from the vault.</p>'); console.error(e); }
+};
+const imgIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { imgIO.unobserve(e.target); loadImg(e.target); } }), { rootMargin: '600px 0px' });
+$$('img[data-vault]').forEach(img => img.id === 'heroPoster' ? (img.classList.add('ph'), loadImg(img)) : imgIO.observe(img));
+
+// Posters for the players.
+$$('video[data-poster]').forEach(v => imageURL(v.dataset.poster).then(u => { v.poster = u; }).catch(() => {}));
+
+// Hero loop: the whole clip (four small segments) joined into one Blob, so it loops cleanly.
+const hero = $('#heroVideo');
+if (!reducedMotion) ready.then(async () => {
+  const spec = manifest.videos.hero[big ? '1080' : '720'];
+  const parts = [await vault.bytes(spec.init)];
+  for (const s of spec.segments) parts.push(await vault.bytes(s));
+  hero.src = URL.createObjectURL(new Blob(parts, { type: 'video/mp4' }));
+  await hero.play().catch(() => {});
+  hero.classList.add('on');
+  new IntersectionObserver(([e]) => e.isIntersecting ? hero.play().catch(() => {}) : hero.pause()).observe(hero);
+}).catch(e => console.error(e));
+
+// Players: stream the segments from the vault on first play.
+const started = new Set();
+const startPlayer = async (video, overlay) => {
+  if (started.has(video)) { video.play().catch(() => {}); return; }
+  started.add(video);
+  const label = $('.pl', overlay);
+  overlay.classList.add('busy'); label.dataset.pct = '';
+  await ready;
+  const qs = manifest.videos[video.dataset.video];
+  const spec = qs[big && qs['1080'] ? '1080' : '720'];
+  video.controls = true;
+  let shown = false;
+  const go = () => {
+    if (shown) return; shown = true; overlay.hidden = true;
+    video.play().catch(() => { overlay.hidden = false; overlay.classList.remove('busy'); started.delete(video); });
+  };
+  video.addEventListener('canplay', go, { once: true });
+  playSegmented(video, vault, spec, { onProgress: p => { label.dataset.pct = Math.round(p * 100) + '%'; } })
+    .then(go)
+    .catch(e => { overlay.hidden = false; overlay.classList.remove('busy'); label.textContent = 'Could not load from the vault'; console.error(e); });
+};
+$$('.playover').forEach(o => o.addEventListener('click', () => startPlayer(document.getElementById(o.dataset.for), o)));
+
+// "Watch the film" scrolls to the player and starts it.
+$$('[data-play]').forEach(a => a.addEventListener('click', ev => {
+  ev.preventDefault();
+  $('#film').scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth' });
+  startPlayer($('#film-player'), $('.playover[data-for="film-player"]'));
+}));
+
+// Lightbox: the 1600 version, decrypted on open.
+const lb = $('#lb'), lbImg = $('img', lb), lbCap = $('p', lb);
+$$('[data-full]').forEach(b => b.addEventListener('click', async () => {
+  const thumb = $('img', b);
+  lbImg.src = thumb.src; lbImg.alt = thumb.alt; lbCap.textContent = b.dataset.cap || '';
+  lb.showModal();
+  try { const u = await imageURL(b.dataset.full); if (lb.open) lbImg.src = u; } catch (e) { console.error(e); }
+}));
+lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('x')) lb.close(); });
+
+$$('[data-copy]').forEach(b => b.addEventListener('click', () => {
+  navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent).then(() => {
+    b.textContent = 'Copied'; setTimeout(() => { b.textContent = 'Copy'; }, 1500);
+  });
+}));
 </script>
 </body>
 </html>
