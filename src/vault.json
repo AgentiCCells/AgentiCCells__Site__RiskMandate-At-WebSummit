@@ -1,0 +1,6 @@
+{
+  "what": "Read-only key for the sgit vault that holds the original videos and photos used on this site. Published on Dinis Cruz's instruction (2026-11-16).",
+  "read_key": "sgit_private_read_139a50f00d9deb33a55cfc98a60ca5a32bc51f79d40515f7c57a3a9a4e9dca66:p35v1fwp",
+  "install": "pip install sgit-ai",
+  "clone": "sgit clone sgit_private_read_139a50f00d9deb33a55cfc98a60ca5a32bc51f79d40515f7c57a3a9a4e9dca66:p35v1fwp riskmandate-at-websummit"
+}

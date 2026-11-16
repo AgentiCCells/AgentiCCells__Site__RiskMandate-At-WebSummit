@@ -1,10 +1,13 @@
 {
   "schema": "hub.json (draft)",
   "name": "RiskMandate at Web Summit",
-  "what_it_does": "A one-page site for RiskMandate at Web Summit Lisbon 2026, setting out its three questions for any AI agent (reach, mandate and gap), with videos and photos from the week to follow.",
+  "what_it_does": "A one-page site for RiskMandate at Web Summit Lisbon 2026: the film Know the Reach, its three questions for any AI agent (reach, mandate and gap), the live visualisations from the stand, photos from the week and the read-only key of the materials vault.",
   "owner": "AgentiCCells",
-  "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
-  "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
+  "team": "site.riskmandate-at-websummit@AgentiCCells.dinis (after factory@AgentiCCells.dinis), instructed by Dinis Cruz",
+  "licence": {
+    "code": "Apache-2.0",
+    "text": "CC BY 4.0"
+  },
   "repository": "https://github.com/AgentiCCells/AgentiCCells__Site__RiskMandate-At-WebSummit",
   "live_address": "https://riskmandate-at-websummit.agenticcells.site",
   "version_from": "/version.json"

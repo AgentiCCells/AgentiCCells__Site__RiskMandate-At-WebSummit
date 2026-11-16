@@ -4,72 +4,359 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RiskMandate at Web Summit Lisbon 2026</title>
-<meta name="description" content="RiskMandate at Web Summit Lisbon 2026, 9 to 12 November: three questions for any AI agent, reach, mandate and gap. Videos and photos from the week to follow.">
+<meta name="description" content="RiskMandate at Web Summit Lisbon 2026, 9 to 12 November: the film Know the Reach, three questions for any AI agent (reach, mandate and gap), the live views from the stand and photos from the week.">
+<meta name="theme-color" content="#071114">
+<meta property="og:title" content="RiskMandate at Web Summit Lisbon 2026">
+<meta property="og:description" content="Know the reach. Define the mandate. Close the gap. The film, the live views from the stand and photos from the week.">
+<meta property="og:image" content="https://riskmandate-at-websummit.agenticcells.site/media/hero-poster.jpg">
+<meta property="og:type" content="website">
+<link rel="preload" as="image" href="media/hero-poster.jpg">
 <style>
-:root{--bg:#fbf7f0;--fg:#1f1d1a;--muted:#5f5a52;--card:#fff;--line:#e4ddd0;--reach:#1d6fa5;--mandate:#2e7d4f;--gap:#b4462b}
-@media(prefers-color-scheme:dark){:root{--bg:#15130f;--fg:#efebe4;--muted:#aaa397;--card:#1f1c17;--line:#38332b;--reach:#6db3e3;--mandate:#74c495;--gap:#ec8a6f}}
+:root{
+  --bg:#071114;--bg2:#0b1a1e;--panel:#0f2227;--line:#1d363c;--fg:#eef4f2;--muted:#9db3b0;
+  --teal:#3fd6c8;--amber:#f2a93b;--reach:#5fb4ea;--mandate:#6fd39a;--gap:#f0815f;
+  --radius:14px;--max:74rem;
+  --display:"Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
 *{box-sizing:border-box}
-body{margin:0;font:18px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 var(--display);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-underline-offset:.2em}
-main{max-width:56rem;margin:0 auto;padding:2.5rem 1.25rem 1rem}
-header{text-align:center;padding:1rem 0 2rem}
-.eyebrow{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .75rem}
-h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.15;margin:0 0 1rem}
-.lede{max-width:38rem;margin:0 auto;color:var(--muted)}
-.diagram{display:block;margin:2rem auto 0;width:100%;max-width:22rem;height:auto}
-.questions{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));margin:1rem 0 3rem;padding:0;list-style:none}
-.q{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:.6rem;padding:1.25rem 1.25rem 1rem}
-.q h2{margin:0;font-size:1.6rem;color:var(--c)}
-.q p{margin:.4rem 0 0}
-.q .ask{font-weight:600}
+img,video{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 16px}
+@media(min-width:700px){.wrap{padding:0 2rem}}
+.kicker{font:600 .78rem/1.2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin:0 0 1rem}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.02em;margin:0}
+h2{font-size:clamp(1.9rem,4.6vw,3.2rem);line-height:1.08;font-weight:700}
+.sub{color:var(--muted);max-width:40rem;font-size:1.08rem;margin:1rem 0 0}
+main>section.wrap{margin-top:clamp(4.5rem,11vw,8rem)}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 16px;transition:background .3s,backdrop-filter .3s}
+.nav.solid{background:rgba(7,17,20,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font:700 .95rem/1 var(--display);letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:.55rem}
+.brand i{width:.7rem;height:.7rem;border-radius:50%;background:var(--amber);box-shadow:0 0 14px var(--amber)}
+.nav ul{display:none;list-style:none;margin:0;padding:0;gap:1.6rem;font-size:.9rem;color:var(--muted)}
+.nav ul a{text-decoration:none}.nav ul a:hover{color:var(--fg)}
+@media(min-width:820px){.nav ul{display:flex}.nav{padding:.9rem 2rem}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,17,20,.55) 0%,rgba(7,17,20,.1) 35%,rgba(7,17,20,.55) 70%,var(--bg) 100%),radial-gradient(ellipse at 20% 80%,rgba(7,17,20,.75),transparent 60%)}
+.hero-inner{padding-bottom:clamp(3rem,8vh,6rem);padding-top:6rem}
+.hero h1{font-size:clamp(3rem,11vw,8.5rem);line-height:.92;font-weight:800;letter-spacing:-.045em;max-width:12ch}
+.hero h1 span{color:var(--amber);text-shadow:0 0 40px rgba(242,169,59,.35)}
+.hero .lede{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:36rem;margin:1.4rem 0 2rem;color:#d7e3e1}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;border:0;border-radius:999px;padding:.95rem 1.5rem;font:600 1rem/1 var(--display);cursor:pointer;text-decoration:none;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--amber);color:#1a1205}
+.btn.ghost{background:rgba(255,255,255,.08);color:var(--fg);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+.btn svg{width:1.1em;height:1.1em}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:2.2rem;font:500 .8rem/1.4 var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+/* film */
+.film{position:relative;margin-top:2.5rem;border-radius:var(--radius);overflow:hidden;background:#000;box-shadow:0 30px 80px -20px rgba(63,214,200,.25),0 0 0 1px var(--line)}
+.film video{width:100%;aspect-ratio:16/9;background:#000}
+.lines{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:2rem}
+@media(min-width:760px){.lines{grid-template-columns:repeat(3,1fr)}}
+.lines blockquote{margin:0;background:var(--bg2);padding:1.5rem 1.4rem;font-size:1.12rem;line-height:1.45}
+.lines cite{display:block;margin-top:.7rem;font:500 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-style:normal}
+
+/* questions */
+.q-grid{display:grid;gap:1.2rem;margin-top:2.6rem;align-items:stretch}
+@media(min-width:900px){.q-grid{grid-template-columns:1.1fr 1fr 1fr 1fr}}
+.venn{display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,rgba(63,214,200,.09),transparent 70%);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem}
+.venn svg{width:100%;max-width:18rem;height:auto}
+.q{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem 1.5rem;overflow:hidden}
+.q::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--c)}
+.q::after{content:"";position:absolute;width:12rem;height:12rem;right:-5rem;top:-5rem;border-radius:50%;background:var(--c);opacity:.08;filter:blur(10px)}
+.q .n{font:600 .75rem/1 var(--mono);color:var(--c);letter-spacing:.14em}
+.q h3{font-size:2rem;margin:.9rem 0 .6rem;color:var(--c)}
+.q p{margin:0;font-size:1.15rem;line-height:1.4}
 .reach{--c:var(--reach)}.mandate{--c:var(--mandate)}.gap{--c:var(--gap)}
-section{margin:0 0 2.5rem}
-section h2{font-size:1.4rem;margin:0 0 .5rem}
-.soon{border:2px dashed var(--line);border-radius:.6rem;padding:1.25rem;text-align:center;color:var(--muted)}
-.links{padding-left:1.2rem}
-footer{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 2.5rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+
+/* viz */
+.viz{display:grid;gap:1.2rem;margin-top:2.6rem}
+@media(min-width:900px){.viz{grid-template-columns:repeat(12,1fr)}.viz .big{grid-column:span 7}.viz .side{grid-column:span 5}.viz .half{grid-column:span 6}}
+.card{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.card button{all:unset;cursor:zoom-in;display:block;position:relative;overflow:hidden;background:#000;flex:1}
+.card button:focus-visible{outline:2px solid var(--teal);outline-offset:-2px}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.card button:hover img{transform:scale(1.035)}
+.card figcaption{padding:1rem 1.2rem 1.15rem;font-size:.95rem;color:var(--muted)}
+.card figcaption b{display:block;color:var(--fg);font-weight:600;margin-bottom:.2rem}
+.tag{font:600 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.viz .big img{aspect-ratio:1600/1016}
+.viz .half img{aspect-ratio:16/9}.viz .side img{aspect-ratio:16/9}
+@media(min-width:900px){.viz .side img{aspect-ratio:auto;position:absolute;inset:0}}
+
+/* gallery */
+.gallery{display:grid;gap:1rem;margin-top:2.6rem}
+.gallery figure{margin:0}
+.gallery .card img{height:auto}
+@media(min-width:600px){
+  .gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:clamp(11rem,22vw,17rem);grid-auto-flow:dense}
+  .gallery .card img{height:100%}
+  .gallery .tall{grid-row:span 2}.gallery .wide{grid-column:span 2}
+}
+@media(min-width:1000px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.stand-clip{display:grid;gap:1.5rem;align-items:center;margin-top:3rem;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+@media(min-width:900px){.stand-clip{grid-template-columns:1.4fr 1fr;padding:1.2rem}}
+.stand-clip video{width:100%;aspect-ratio:16/9;border-radius:10px;background:#000}
+.stand-clip h3{font-size:1.5rem;margin-bottom:.5rem}
+.stand-clip p{color:var(--muted);margin:0}
+
+/* links */
+.links{display:grid;gap:1.2rem;margin-top:2.6rem}
+@media(min-width:760px){.links{grid-template-columns:1fr 1fr}}
+.link{display:block;text-decoration:none;background:linear-gradient(140deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem 1.6rem;transition:border-color .2s,transform .2s}
+.link:hover{border-color:var(--teal);transform:translateY(-2px)}
+.link .host{font:600 1.5rem/1.2 var(--display);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.link .host span{color:var(--teal);font-size:1.3rem}
+.link p{color:var(--muted);margin:.6rem 0 0}
+
+/* vault */
+.vault{margin-top:2.6rem;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);padding:1.4rem}
+.vault p{margin:0 0 1rem;color:var(--muted)}
+.code{display:flex;gap:.6rem;align-items:stretch;margin:.4rem 0 1rem}
+.code code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font:500 .85rem/1.5 var(--mono);background:#04090b;border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem;color:#cfe9e5}
+.copy{flex:none;border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:10px;padding:0 1rem;font:600 .85rem/1 var(--display);cursor:pointer}
+.copy:hover{border-color:var(--teal)}
+.label{font:600 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+footer{margin-top:clamp(4rem,10vw,7rem);border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.88rem}
 footer p{margin:.25rem 0}
+
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(96vw,1700px);max-height:94vh;color:var(--fg)}
+dialog::backdrop{background:rgba(3,8,10,.92);backdrop-filter:blur(4px)}
+dialog img{max-width:100%;max-height:86vh;width:auto;margin:0 auto;border-radius:8px}
+dialog p{text-align:center;color:var(--muted);margin:.8rem 0 0;font-size:.95rem}
+dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.5);color:#fff;font-size:1.4rem;cursor:pointer}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.card img{transition:none}}
 </style>
 </head>
 <body>
-<main>
-<header>
-<p class="eyebrow">Lisbon, 9 to 12 November 2026</p>
-<h1>RiskMandate at Web Summit Lisbon&nbsp;2026</h1>
-<p class="lede">RiskMandate asks three questions of any AI agent.</p>
-<svg class="diagram" viewBox="0 0 240 160" role="img" aria-label="Two overlapping circles: reach and mandate. The part of reach outside the mandate is the gap.">
-<circle cx="95" cy="80" r="62" fill="var(--reach)" fill-opacity=".22" stroke="var(--reach)" stroke-width="3"/>
-<circle cx="150" cy="80" r="45" fill="var(--mandate)" fill-opacity=".22" stroke="var(--mandate)" stroke-width="3"/>
-<text x="60" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="var(--gap)" font-family="system-ui,sans-serif">gap</text>
-<text x="95" y="12" text-anchor="middle" font-size="12" fill="var(--reach)" font-family="system-ui,sans-serif">reach</text>
-<text x="150" y="152" text-anchor="middle" font-size="12" fill="var(--mandate)" font-family="system-ui,sans-serif">mandate</text>
-</svg>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top"><i></i>RiskMandate · Web Summit</a>
+  <ul>
+    <li><a href="#film">The film</a></li>
+    <li><a href="#questions">Three questions</a></li>
+    <li><a href="#stand">At the stand</a></li>
+    <li><a href="#week">The week</a></li>
+    <li><a href="#files">Original files</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <img class="poster" src="media/hero-poster.jpg" alt="">
+  <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg" aria-hidden="true">
+    <source src="media/hero-loop-1080.mp4" type="video/mp4" media="(min-width: 900px)">
+    <source src="media/hero-loop-720.mp4" type="video/mp4">
+  </video>
+  <div class="wrap hero-inner">
+    <p class="kicker">RiskMandate at Web Summit Lisbon 2026</p>
+    <h1>Know the <span>reach.</span></h1>
+    <p class="lede">What can your AI agent actually do, what was it authorised to do, and who controls the difference? RiskMandate brought those three questions to Lisbon.</p>
+    <div class="btns">
+      <a class="btn primary" href="#film" data-play>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+        Watch the film · 3:39
+      </a>
+      <a class="btn ghost" href="#week">See the week</a>
+    </div>
+    <div class="meta"><span>Lisbon</span><span>9 to 12 November 2026</span><span>Reach · Mandate · Gap</span></div>
+  </div>
 </header>
 
-<ul class="questions">
-<li class="q reach"><h2>Reach</h2><p class="ask">What can the agent actually do?</p></li>
-<li class="q mandate"><h2>Mandate</h2><p class="ask">What was it authorised to do?</p></li>
-<li class="q gap"><h2>Gap</h2><p class="ask">Who controls the difference?</p></li>
-</ul>
-
-<section>
-<h2>From the week</h2>
-<div class="soon">
-<p><strong>Coming soon.</strong> The videos and photos from Web Summit are being gathered and will be added here, including RiskMandate's short clip, "Know the Reach".</p>
-</div>
+<main>
+<section id="film" class="wrap">
+  <div class="reveal">
+    <p class="kicker">The film</p>
+    <h2>Know the Reach</h2>
+    <p class="sub">RiskMandate's short film, made for Web Summit. Turn the sound on: it is a song, with subtitles.</p>
+  </div>
+  <div class="film reveal">
+    <video id="film-player" controls playsinline preload="metadata" poster="media/film-poster.jpg">
+      <source src="media/know-the-reach-1080.mp4" type="video/mp4" media="(min-width: 900px)">
+      <source src="media/know-the-reach-720.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="lines reveal">
+    <blockquote>"We put our own agent on the table, and we measured it to death."<cite>From the film</cite></blockquote>
+    <blockquote>"'Cause trust is not a feeling, it's evidence you can show."<cite>From the film</cite></blockquote>
+    <blockquote>"Know the reach! Define the mandate! Close the gap before it's too late!"<cite>From the film</cite></blockquote>
+  </div>
 </section>
 
-<section>
-<h2>Links</h2>
-<ul class="links">
-<li>RiskMandate: <a href="https://riskmandate.ai">riskmandate.ai</a></li>
-<li>PrompTugal.news, the newsroom that covered Web Summit, powered by RiskMandate: <a href="https://promptugal.news">promptugal.news</a></li>
-</ul>
+<section id="questions" class="wrap">
+  <div class="reveal">
+    <p class="kicker">Three questions</p>
+    <h2>Ask them of any AI agent.</h2>
+  </div>
+  <div class="q-grid">
+    <div class="venn reveal">
+      <svg viewBox="0 0 240 170" role="img" aria-label="Two overlapping circles: reach and mandate. The part of reach outside the mandate is the gap.">
+        <circle cx="95" cy="88" r="64" fill="var(--reach)" fill-opacity=".18" stroke="var(--reach)" stroke-width="2.5"/>
+        <circle cx="152" cy="88" r="46" fill="var(--mandate)" fill-opacity=".2" stroke="var(--mandate)" stroke-width="2.5"/>
+        <text x="58" y="93" text-anchor="middle" font-size="16" font-weight="700" fill="var(--gap)" font-family="system-ui,sans-serif">gap</text>
+        <text x="95" y="15" text-anchor="middle" font-size="12" fill="var(--reach)" font-family="system-ui,sans-serif" letter-spacing="2">REACH</text>
+        <text x="152" y="160" text-anchor="middle" font-size="12" fill="var(--mandate)" font-family="system-ui,sans-serif" letter-spacing="2">MANDATE</text>
+      </svg>
+    </div>
+    <div class="q reach reveal"><span class="n">01</span><h3>Reach</h3><p>What can the agent actually do?</p></div>
+    <div class="q mandate reveal"><span class="n">02</span><h3>Mandate</h3><p>What was it authorised to do?</p></div>
+    <div class="q gap reveal"><span class="n">03</span><h3>Gap</h3><p>Who controls the difference?</p></div>
+  </div>
+</section>
+
+<section id="stand" class="wrap">
+  <div class="reveal">
+    <p class="kicker">At the stand</p>
+    <h2>The live views on the screen.</h2>
+    <p class="sub">Frames from the walkthrough filmed at the RiskMandate stand: people, their agents, and the systems those agents can reach, drawn live.</p>
+  </div>
+  <div class="viz">
+    <figure class="card big reveal">
+      <button data-full="img/viz/hexagon-1600.webp" data-cap="Team view: each person sits on the edge of the hexagon with their agents around them; the lines are the links between agents."><img src="img/viz/hexagon-800.webp" srcset="img/viz/hexagon-800.webp 800w, img/viz/hexagon-1600.webp 1600w" sizes="(min-width:900px) 58vw, 100vw" alt="A glowing hexagon on a dark blue screen. Five clusters of coloured dots, each around a named circle, are joined by hundreds of fine lines." loading="lazy"></button>
+      <figcaption><span class="tag">Team</span><b>Everyone, and every agent</b>Each person on the edge of the hexagon, their agents around them, and the links between agents.</figcaption>
+    </figure>
+    <figure class="card side reveal">
+      <button data-full="img/viz/agents-1600.webp" data-cap="One person's agents: how many there are, how many have a policy, and which ones talk to each other."><img src="img/viz/agents-800.webp" srcset="img/viz/agents-800.webp 800w, img/viz/agents-1600.webp 1600w" sizes="(min-width:900px) 40vw, 100vw" alt="A glowing orb on the left branches through four summary boxes into a fan of named agents on the right, with a side panel of counts." loading="lazy"></button>
+      <figcaption><span class="tag">Agents</span><b>One person's agents</b>How many there are, how many have a policy, and which ones talk to each other.</figcaption>
+    </figure>
+    <figure class="card half reveal">
+      <button data-full="img/viz/deliverables-1600.webp" data-cap="Deliverables: agents inside the circle, joined to the systems they reach, such as mail, keys, the site, infrastructure and the CRM."><img src="img/viz/deliverables-800.webp" srcset="img/viz/deliverables-800.webp 800w, img/viz/deliverables-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A circle full of agent nodes, with lines running out to a column of icons labelled mail, research, draft, keys, site, infrastructure, app, CRM and LinkedIn." loading="lazy"></button>
+      <figcaption><span class="tag">Reach</span><b>What the agents can touch</b>Agents joined to the systems they reach: mail, keys, the site, infrastructure, the CRM.</figcaption>
+    </figure>
+    <figure class="card half reveal">
+      <button data-full="img/viz/universe-1600.webp" data-cap="Universe: the team drawn as planets and moons, with agents that have no policy flagged in red."><img src="img/viz/universe-800.webp" srcset="img/viz/universe-800.webp 800w, img/viz/universe-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A dark starfield with a bright sun at the centre and planets on orbits, some carrying small red labels." loading="lazy"></button>
+      <figcaption><span class="tag">Universe</span><b>The whole system as a sky</b>The team as planets and moons, with agents that have no policy flagged in red.</figcaption>
+    </figure>
+    <figure class="card half reveal">
+      <button data-full="img/photos/dashboard-1600.webp" data-cap="The stand's large screen: a flow of agents and policies on the left, the team hexagon on the right."><img src="img/photos/dashboard-800.webp" srcset="img/photos/dashboard-800.webp 800w, img/photos/dashboard-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A large screen showing a flow diagram of coloured boxes on the left and the glowing team hexagon on the right." loading="lazy"></button>
+      <figcaption><span class="tag">Flow</span><b>Policies, side by side</b>A flow of agents and policies next to the team hexagon, on the stand's large screen.</figcaption>
+    </figure>
+    <figure class="card half reveal">
+      <button data-full="img/photos/universe-screen-1600.webp" data-cap="The universe view, close up: a sun at the centre, planets on their orbits, labels on each."><img src="img/photos/universe-screen-800.webp" srcset="img/photos/universe-screen-800.webp 800w, img/photos/universe-screen-1600.webp 1600w" sizes="(min-width:900px) 48vw, 100vw" alt="A close photo of a screen: a golden sun at the centre with planets on elliptical orbits and small labels." loading="lazy"></button>
+      <figcaption><span class="tag">Universe</span><b>Close up</b>The universe view photographed on the screen at the stand.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="week" class="wrap">
+  <div class="reveal">
+    <p class="kicker">The week</p>
+    <h2>Four days in Lisbon.</h2>
+    <p class="sub">The team, the stand, the hoodies and the last box into the car.</p>
+  </div>
+  <div class="stand-clip reveal">
+    <video controls playsinline preload="none" poster="media/stand-poster.jpg">
+      <source src="media/at-the-stand-720.mp4" type="video/mp4">
+    </video>
+    <div>
+      <p class="kicker">37 seconds</p>
+      <h3>At the stand</h3>
+      <p>Explaining RiskMandate beside the stand sign: create and buy agent behaviour policies that set out what an agent can reach, what you authorised it to do, and the gap between the two.</p>
+    </div>
+  </div>
+  <div class="gallery">
+    <figure class="card reveal tall"><button data-full="img/photos/stand-1600.webp" data-cap="The team at the RiskMandate stand."><img src="img/photos/stand-800.webp" width="800" height="1067" alt="Six people in RiskMandate t-shirts and hoodies smiling at the stand, in front of its sign." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="img/photos/team-back-1600.webp" data-cap="Agents under policy: the hoodies from behind."><img src="img/photos/team-back-800.webp" width="800" height="600" alt="Five people seen from behind, arms around each other, in orange, black, green, red and pink hoodies printed with 'Agents under policy' and RiskMandate." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="img/photos/arena-1600.webp" data-cap="Inside the arena."><img src="img/photos/arena-800.webp" width="800" height="600" alt="Six people posing together inside a large arena, with stage lights and seating behind them." loading="lazy"></button></figure>
+    <figure class="card reveal tall"><button data-full="img/photos/stand-cheer-1600.webp" data-cap="Cheering at the stand."><img src="img/photos/stand-cheer-800.webp" width="800" height="1067" alt="The team at the stand, arms raised, under the exhibition hall roof." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="img/photos/selfie-1600.webp" data-cap="Outside the arena."><img src="img/photos/selfie-800.webp" width="800" height="600" alt="A selfie of three smiling people outside the arena, one in a 'Ask me how I control my agents' t-shirt." loading="lazy"></button></figure>
+    <figure class="card reveal tall"><button data-full="img/photos/team-hall-1600.webp" data-cap="Five hoodies, five colours."><img src="img/photos/team-hall-800.webp" width="800" height="1067" alt="Five people standing in a row in a corridor, in orange, black, green, red and pink hoodies." loading="lazy"></button></figure>
+    <figure class="card reveal"><button data-full="img/photos/team-back-2-1600.webp" data-cap="The back of the hoodies, with the QR code."><img src="img/photos/team-back-2-800.webp" width="800" height="600" alt="The same five hoodies from behind, showing the printed QR codes." loading="lazy"></button></figure>
+    <figure class="card reveal wide"><button data-full="img/photos/packing-up-1600.webp" data-cap="Packing up: the stand sign goes into the car."><img src="img/photos/packing-up-800.webp" width="800" height="450" alt="A smiling person in a yellow hoodie loads the RiskMandate stand sign into the boot of a car at night." loading="lazy"></button></figure>
+  </div>
+</section>
+
+<section id="links" class="wrap">
+  <div class="reveal">
+    <p class="kicker">Keep going</p>
+    <h2>Where to next.</h2>
+  </div>
+  <div class="links">
+    <a class="link reveal" href="https://riskmandate.ai"><div class="host">riskmandate.ai <span>↗</span></div><p>RiskMandate: know the reach, define the mandate, control the gap.</p></a>
+    <a class="link reveal" href="https://promptugal.news"><div class="host">promptugal.news <span>↗</span></div><p>PrompTugal.news, the newsroom that covered Web Summit, powered by RiskMandate.</p></a>
+  </div>
+</section>
+
+<section id="files" class="wrap">
+  <div class="reveal">
+    <p class="kicker">Original files</p>
+    <h2>Take the originals.</h2>
+    <p class="sub">The full-quality videos and photos behind this page sit in an encrypted sgit vault. This read-only key opens it.</p>
+  </div>
+  <div class="vault reveal" id="vault">
+    <span class="label">Read-only vault key</span>
+    <div class="code"><code id="vk">Loading…</code><button class="copy" data-copy="vk">Copy</button></div>
+    <span class="label">Clone it</span>
+    <div class="code"><code id="vc">pip install sgit-ai</code><button class="copy" data-copy="vc">Copy</button></div>
+    <noscript><p>The key is in <a href="vault.json">vault.json</a>.</p></noscript>
+  </div>
 </section>
 </main>
+
 <footer>
-<p>Made by the AgentiCCells site factory; a first version, materials to follow.</p>
-<p>Version __VERSION__ · Code Apache-2.0, text CC BY 4.0.</p>
+  <div class="wrap">
+    <p>RiskMandate at Web Summit Lisbon 2026. Film, photos and screen recordings from the RiskMandate team.</p>
+    <p>Made by the AgentiCCells site factory · Version __VERSION__ · Code Apache-2.0, text CC BY 4.0.</p>
+  </div>
 </footer>
+
+<dialog id="lb"><button class="x" aria-label="Close">×</button><img alt=""><p></p></dialog>
+
+<script>
+(() => {
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Hero: respect reduced motion; pause the loop when off screen.
+  const hero = document.getElementById('heroVideo');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { hero.removeAttribute('autoplay'); hero.pause(); }
+  else new IntersectionObserver(([e]) => e.isIntersecting ? hero.play().catch(() => {}) : hero.pause()).observe(hero);
+
+  // "Watch the film" scrolls to the player and starts it with sound.
+  const film = document.getElementById('film-player');
+  document.querySelectorAll('[data-play]').forEach(a => a.addEventListener('click', ev => {
+    ev.preventDefault();
+    document.getElementById('film').scrollIntoView({ behavior: 'smooth' });
+    film.muted = false; film.play().catch(() => {});
+  }));
+
+  // Reveal on scroll.
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Lightbox.
+  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
+  document.querySelectorAll('[data-full]').forEach(b => b.addEventListener('click', () => {
+    lbImg.src = b.dataset.full; lbImg.alt = b.querySelector('img').alt; lbCap.textContent = b.dataset.cap || '';
+    lb.showModal();
+  }));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('x')) lb.close(); });
+
+  // Vault key (published on purpose; read-only).
+  fetch('vault.json').then(r => r.json()).then(v => {
+    document.getElementById('vk').textContent = v.read_key;
+    document.getElementById('vc').textContent = v.install + ' && ' + v.clone;
+  }).catch(() => { document.getElementById('vk').innerHTML = 'See <a href="vault.json">vault.json</a>'; });
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById(b.dataset.copy).textContent).then(() => {
+      b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1500);
+    });
+  }));
+})();
+</script>
 </body>
 </html>

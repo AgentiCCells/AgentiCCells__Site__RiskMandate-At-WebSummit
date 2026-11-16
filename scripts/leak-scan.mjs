@@ -87,7 +87,12 @@ function highEntropy(line) {
 
 // Narrow allowlist: [path, kind, reason]. Keep each entry to one file and one kind.
 const ALLOW = [
-  // (none yet)
+  // The read-only key of the materials vault (videos and photos), published on the site
+  // on Dinis Cruz's instruction (2026-11-16 ~03:55 UTC: "you're going to share on the
+  // website because you're going to link this directly there"). Read-only: it cannot
+  // write to the vault. site.riskmandate-at-websummit@AgentiCCells.dinis, 2026-11-16.
+  ['src/vault.json', 'sgit vault or read key', 'read-only materials vault key, public by instruction'],
+  ['_site/vault.json', 'sgit vault or read key', 'built copy of src/vault.json'],
 ];
 const allowed = (path, kind) => ALLOW.some(([p, k]) => p === path && k === kind);
 
