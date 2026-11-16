@@ -156,6 +156,12 @@ footer p{margin:.25rem 0}
 .vstatus .dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
 .vstatus.ok .dot{background:var(--mandate);box-shadow:0 0 10px var(--mandate)}
 .vstatus.err .dot{background:var(--gap);box-shadow:0 0 10px var(--gap)}
+.vnote{margin:-.4rem 0 1.2rem;font-size:.92rem}
+.vlinks{margin:.2rem 0 1.2rem;font-size:.92rem}.vlinks a{color:var(--teal)}
+.vfacts{display:grid;gap:.7rem;margin:0 0 .4rem;padding:1rem 0 0;border-top:1px solid var(--line)}
+@media(min-width:760px){.vfacts{grid-template-columns:repeat(2,1fr)}}
+.vfacts dt{font:600 .7rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.vfacts dd{margin:.2rem 0 0;font-size:.92rem}
 .err-note{padding:1rem;color:var(--muted);font-size:.9rem}
 
 /* lightbox */
@@ -316,14 +322,22 @@ dialog .x{position:fixed;top:12px;right:12px;width:44px;height:44px;border-radiu
   <div class="reveal">
     <p class="kicker">Original files</p>
     <h2>Take the originals.</h2>
-    <p class="sub">Every video and photo on this page is read from an encrypted sgit vault and decrypted here, in your browser. The server only ever holds ciphertext. The same read-only key opens the full-quality originals.</p>
+    <p class="sub">Every video and photo on this page is read from an encrypted sgit vault and decrypted here, in your browser. The server only ever holds ciphertext. This published read key opens the same vault, originals included.</p>
   </div>
   <div class="vault reveal" id="vault">
-    <span class="label">Read-only vault key</span>
-    <div class="code"><code id="vk">Loading…</code><button class="copy" data-copy="vk">Copy</button></div>
-    <span class="label">Clone it</span>
-    <div class="code"><code id="vc">pip install sgit-ai</code><button class="copy" data-copy="vc">Copy</button></div>
-    <noscript><p>The key is in <a href="vault.json">vault.json</a>. The photos and videos need JavaScript: they are decrypted in the page.</p></noscript>
+    <span class="label">Read key</span>
+    <div class="code"><code id="vk">sgit_public_read_5080253ee6498168b501f16c3a7e39de281ed11ab9f0f9de066ab482e665b15c:yvytv5bo</code><button class="copy" data-copy="vk">Copy</button></div>
+    <p class="vnote">It grants read access, and only read: it cannot change, add or delete anything. No account, nothing to sign in to.</p>
+    <span class="label">From the command line</span>
+    <div class="code"><code id="vc">pip install sgit-ai &amp;&amp; sgit clone sgit_public_read_5080253ee6498168b501f16c3a7e39de281ed11ab9f0f9de066ab482e665b15c:yvytv5bo riskmandate-at-websummit</code><button class="copy" data-copy="vc">Copy</button></div>
+    <p class="vlinks"><a href="https://dev.vault.sgraph.ai/#sgit_public_read_5080253ee6498168b501f16c3a7e39de281ed11ab9f0f9de066ab482e665b15c%3Ayvytv5bo" target="_blank" rel="noopener noreferrer">Open it read-only in the official vault UI ↗</a> · <a href="https://sgit.ai/docs/credentials.html">What a read key is</a></p>
+    <dl class="vfacts">
+      <div><dt>Vault</dt><dd>yvytv5bo</dd></div>
+      <div><dt>Holds</dt><dd>web/ (what this page shows), Photos/ and Videos/ (the originals)</dd></div>
+      <div><dt>Audited before publishing</dt><dd>Every text file scanned for keys and tokens: none. GPS and other location data removed from the original photos and videos. One photo cropped so a number plate does not show.</dd></div>
+      <div><dt>Write key</dt><dd>Not published.</dd></div>
+    </dl>
+    <noscript><p>The photos and videos need JavaScript: they are decrypted in the page. The key is also in <a href="vault.json">vault.json</a>.</p></noscript>
     <div class="vstatus" id="vstatus"><span class="dot"></span><span id="vstatus-text">Opening the vault…</span></div>
   </div>
 </section>
@@ -357,8 +371,6 @@ const big = Math.max(screen.width, screen.height) * devicePixelRatio >= 1600 && 
 let vault, manifest;
 const ready = (async () => {
   const meta = await (await fetch('vault.json')).json();
-  $('#vk').textContent = meta.read_key;
-  $('#vc').textContent = meta.install + ' && ' + meta.clone;
   const { readKeyHex, vaultId } = parseReadKey(meta.read_key);
   vault = await new VaultReader(readKeyHex, vaultId).open();
   manifest = JSON.parse(await vault.text('web/manifest.json'));

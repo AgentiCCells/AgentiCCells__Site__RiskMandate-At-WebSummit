@@ -1,6 +1,9 @@
 {
-  "what": "Read-only key for the sgit vault that holds the videos and photos on this site (web/) and the full-quality originals (Photos/, Videos/). Published on Dinis Cruz's instruction (2026-11-16). The page decrypts the files in the browser.",
-  "read_key": "sgit_public_read_139a50f00d9deb33a55cfc98a60ca5a32bc51f79d40515f7c57a3a9a4e9dca66:p35v1fwp",
+  "what": "Published read key for the sgit vault that holds the videos and photos on this site (web/) and the originals with location metadata removed (Photos/, Videos/). It grants read access only. Published on Dinis Cruz's instruction (2026-11-16).",
+  "read_key": "sgit_public_read_5080253ee6498168b501f16c3a7e39de281ed11ab9f0f9de066ab482e665b15c:yvytv5bo",
+  "vault_id": "yvytv5bo",
+  "official_ui": "https://dev.vault.sgraph.ai/#sgit_public_read_5080253ee6498168b501f16c3a7e39de281ed11ab9f0f9de066ab482e665b15c%3Ayvytv5bo",
   "install": "pip install sgit-ai",
-  "clone": "sgit clone sgit_public_read_139a50f00d9deb33a55cfc98a60ca5a32bc51f79d40515f7c57a3a9a4e9dca66:p35v1fwp riskmandate-at-websummit"
+  "clone": "sgit clone sgit_public_read_5080253ee6498168b501f16c3a7e39de281ed11ab9f0f9de066ab482e665b15c:yvytv5bo riskmandate-at-websummit",
+  "write_key": "not published"
 }
