@@ -3,15 +3,73 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RiskMandate at Web Summit</title>
-<meta name="description" content="RiskMandate at Web Summit Lisbon 2026: what we showed, who we met, and the videos and photos from the week.">
-<style>body{margin:0;font:18px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;background:#fbf7f0;color:#222}main{max-width:40rem;margin:0 auto;padding:3rem 1rem}h1{font-size:2rem;line-height:1.2}.muted{color:#666;font-size:.9rem}@media(prefers-color-scheme:dark){body{background:#17140f;color:#eee}.muted{color:#aaa}}</style>
+<title>RiskMandate at Web Summit Lisbon 2026</title>
+<meta name="description" content="RiskMandate at Web Summit Lisbon 2026, 9 to 12 November: three questions for any AI agent, reach, mandate and gap. Videos and photos from the week to follow.">
+<style>
+:root{--bg:#fbf7f0;--fg:#1f1d1a;--muted:#5f5a52;--card:#fff;--line:#e4ddd0;--reach:#1d6fa5;--mandate:#2e7d4f;--gap:#b4462b}
+@media(prefers-color-scheme:dark){:root{--bg:#15130f;--fg:#efebe4;--muted:#aaa397;--card:#1f1c17;--line:#38332b;--reach:#6db3e3;--mandate:#74c495;--gap:#ec8a6f}}
+*{box-sizing:border-box}
+body{margin:0;font:18px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg)}
+a{color:inherit;text-underline-offset:.2em}
+main{max-width:56rem;margin:0 auto;padding:2.5rem 1.25rem 1rem}
+header{text-align:center;padding:1rem 0 2rem}
+.eyebrow{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .75rem}
+h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.15;margin:0 0 1rem}
+.lede{max-width:38rem;margin:0 auto;color:var(--muted)}
+.diagram{display:block;margin:2rem auto 0;width:100%;max-width:22rem;height:auto}
+.questions{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));margin:1rem 0 3rem;padding:0;list-style:none}
+.q{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:.6rem;padding:1.25rem 1.25rem 1rem}
+.q h2{margin:0;font-size:1.6rem;color:var(--c)}
+.q p{margin:.4rem 0 0}
+.q .ask{font-weight:600}
+.reach{--c:var(--reach)}.mandate{--c:var(--mandate)}.gap{--c:var(--gap)}
+section{margin:0 0 2.5rem}
+section h2{font-size:1.4rem;margin:0 0 .5rem}
+.soon{border:2px dashed var(--line);border-radius:.6rem;padding:1.25rem;text-align:center;color:var(--muted)}
+.links{padding-left:1.2rem}
+footer{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 2.5rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer p{margin:.25rem 0}
+</style>
 </head>
 <body>
 <main>
-<h1>RiskMandate at Web Summit</h1>
-<p>RiskMandate at Web Summit Lisbon 2026: what we showed, who we met, and the videos and photos from the week.</p>
-<p class="muted">Version __VERSION__ · Made by the <a href="https://github.com/AgentiCCells/AgentiCCells__Site__Factory">AgentiCCells site factory</a> · Code Apache-2.0, text CC BY 4.0.</p>
+<header>
+<p class="eyebrow">Lisbon, 9 to 12 November 2026</p>
+<h1>RiskMandate at Web Summit Lisbon&nbsp;2026</h1>
+<p class="lede">RiskMandate asks three questions of any AI agent.</p>
+<svg class="diagram" viewBox="0 0 240 160" role="img" aria-label="Two overlapping circles: reach and mandate. The part of reach outside the mandate is the gap.">
+<circle cx="95" cy="80" r="62" fill="var(--reach)" fill-opacity=".22" stroke="var(--reach)" stroke-width="3"/>
+<circle cx="150" cy="80" r="45" fill="var(--mandate)" fill-opacity=".22" stroke="var(--mandate)" stroke-width="3"/>
+<text x="60" y="84" text-anchor="middle" font-size="15" font-weight="700" fill="var(--gap)" font-family="system-ui,sans-serif">gap</text>
+<text x="95" y="12" text-anchor="middle" font-size="12" fill="var(--reach)" font-family="system-ui,sans-serif">reach</text>
+<text x="150" y="152" text-anchor="middle" font-size="12" fill="var(--mandate)" font-family="system-ui,sans-serif">mandate</text>
+</svg>
+</header>
+
+<ul class="questions">
+<li class="q reach"><h2>Reach</h2><p class="ask">What can the agent actually do?</p></li>
+<li class="q mandate"><h2>Mandate</h2><p class="ask">What was it authorised to do?</p></li>
+<li class="q gap"><h2>Gap</h2><p class="ask">Who controls the difference?</p></li>
+</ul>
+
+<section>
+<h2>From the week</h2>
+<div class="soon">
+<p><strong>Coming soon.</strong> The videos and photos from Web Summit are being gathered and will be added here, including RiskMandate's short clip, "Know the Reach".</p>
+</div>
+</section>
+
+<section>
+<h2>Links</h2>
+<ul class="links">
+<li>RiskMandate: <a href="https://riskmandate.ai">riskmandate.ai</a></li>
+<li>PrompTugal.news, the newsroom that covered Web Summit, powered by RiskMandate: <a href="https://promptugal.news">promptugal.news</a></li>
+</ul>
+</section>
 </main>
+<footer>
+<p>Made by the AgentiCCells site factory; a first version, materials to follow.</p>
+<p>Version __VERSION__ · Code Apache-2.0, text CC BY 4.0.</p>
+</footer>
 </body>
 </html>

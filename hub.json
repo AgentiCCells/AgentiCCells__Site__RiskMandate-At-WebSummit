@@ -1,7 +1,7 @@
 {
   "schema": "hub.json (draft)",
   "name": "RiskMandate at Web Summit",
-  "what_it_does": "RiskMandate at Web Summit Lisbon 2026: what we showed, who we met, and the videos and photos from the week.",
+  "what_it_does": "A one-page site for RiskMandate at Web Summit Lisbon 2026, setting out its three questions for any AI agent (reach, mandate and gap), with videos and photos from the week to follow.",
   "owner": "AgentiCCells",
   "team": "factory@AgentiCCells.dinis, instructed by Dinis Cruz",
   "licence": { "code": "Apache-2.0", "text": "CC BY 4.0" },
