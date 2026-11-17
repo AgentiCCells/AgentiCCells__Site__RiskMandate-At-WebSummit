@@ -25,6 +25,17 @@ for (const f of [...files, 'hub.json', 'README.md']) {
     if (!/<html lang="/.test(s)) fail(`${f}: no lang on <html>`);
     for (const m of s.matchAll(/<script[^>]+src="([^"]+)"/g)) if (/^(https?:)?\/\//.test(m[1])) fail(`${f}: third-party script ${m[1]}`);
     for (const m of s.matchAll(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"/g)) if (/^(https?:)?\/\//.test(m[1])) fail(`${f}: third-party stylesheet ${m[1]}`);
+    // Link previews (Open Graph), added by site-riskmandate-at-websummit@AgentiCCells.dinis, 2026-11-17,
+    // at Dinis Cruz's word via cells@: a share with no og:image showed a cut-off card. WhatsApp drops images over 300 KB.
+    const meta = (k) => (s.match(new RegExp(`<meta (?:property|name)="${k}" content="([^"]*)"`)) || [])[1];
+    for (const k of ['og:title', 'og:description', 'og:url', 'og:image', 'og:image:width', 'og:image:height', 'twitter:card']) if (!meta(k)) fail(`${f}: no ${k}`);
+    const ogi = meta('og:image');
+    if (ogi) {
+      const u = ogi.match(/^https:\/\/[^/]+(\/[^?#]*)$/);
+      if (!u) fail(`${f}: og:image is not an absolute https URL`);
+      else if (!existsSync(join('_site', u[1]))) fail(`${f}: og:image ${u[1]} is not in the built site`);
+      else if (statSync(join('_site', u[1])).size > 300 * 1024) fail(`${f}: og:image is over 300 KB`);
+    }
     for (const m of s.matchAll(/(?:href|src)="([^"#?]+)/g)) {
       const u = m[1]; if (/^(https?:|mailto:|data:|\/\/)/.test(u)) continue;
       const target = u.startsWith('/') ? join('_site', u) : join(dirname(f), u);
